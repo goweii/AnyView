@@ -35,7 +35,7 @@ public class AnyView extends FrameLayout {
     public AnyView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(attrs);
-        initViews();
+        initChild();
     }
 
     @Override
@@ -86,21 +86,19 @@ public class AnyView extends FrameLayout {
         super.onMeasure(newWidthSpec, newHeightSpec);
     }
 
-    protected void initAttrs(AttributeSet attrs) {
+    private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.AnyView);
         mLayoutRes = typedArray.getResourceId(R.styleable.AnyView_av_layout_res, 0);
         typedArray.recycle();
     }
 
-    private void initViews() {
+    private void initChild() {
         int[] layoutRes = getChildLayoutRes();
         if (layoutRes == null || layoutRes.length == 0) {
             return;
         }
         for (int res : layoutRes) {
-            if (res > 0) {
-                addChild(res);
-            }
+            addChild(res);
         }
     }
 
@@ -109,7 +107,12 @@ public class AnyView extends FrameLayout {
     }
 
     public void addChild(int layoutRes) {
-        inflate(getContext(), layoutRes, this);
+        if (layoutRes > 0) {
+            try {
+                inflate(getContext(), layoutRes, this);
+            } catch (Exception ignore) {
+            }
+        }
     }
 
     public void addChild(View childView) {
