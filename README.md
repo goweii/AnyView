@@ -28,6 +28,6 @@ allprojects {
 ```java
 // build.gradle(Module:)
 dependencies {
-    implementation 'com.github.goweii:AnyView:最新版本号'
+    implementation 'com.github.goweii:AnyView:1.0.2'
 }
 ```
