@@ -22,6 +22,8 @@ allprojects {
 - ### 添加依赖
 
   [点击查看最新版本号](https://github.com/goweii/AnyView/releases)
+  
+  从1.0.2版本开始，版本号前不加v，引用时需要注意。
 
 ```java
 // build.gradle(Module:)
